@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  anon_ask_mongo:
+    container_name: anon_ask_mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=example123
+      - MONGO_INITDB_DATABASE=BotFramework
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+      - ./mongo/mongoinit.js:/docker-entrypoint-initdb.d/mongoinit.js
+  anon_ask_node:
+    container_name: anon_ask_node
+    build: ./node
+    ports:
+      - 3000:3000
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI_BOT=mongodb://admin:example123@anon_ask_mongo:27017
+      - MONGO_URI_STATE=mongodb://anonAskBot:example123@anon_ask_mongo:27017/anon_ask_state
+    volumes:
+      - ../src/:/home/node/app
+    command: "nodemon --ignore tokenCache.json --legacy-watch ./bot.js"
+    depends_on:
+      - anon_ask_mongo
+volumes:
+  mongo: ~

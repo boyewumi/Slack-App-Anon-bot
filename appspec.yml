@@ -1,0 +1,27 @@
+version: 0.0
+os: linux
+files:
+  - source: ./src
+    destination: /var/www
+
+hooks:
+  BeforeInstall:
+    - location: CodeDeployScripts/install_dependencies.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: CodeDeployScripts/after_install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: CodeDeployScripts/start_server.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: CodeDeployScripts/stop_server.sh
+      timeout: 300
+      runas: root
+  ValidateService:
+    - location: CodeDeployScripts/validate_server.sh
+      timeout: 300
+      runas: root

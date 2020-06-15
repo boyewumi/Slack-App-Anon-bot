@@ -1,0 +1,43 @@
+{
+  "name": "botkit-anon-ask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "mocha tests/*",
+    "codecov": "nyc mocha tests/*",
+    "prettier:write": "prettier --write \"**/*.js\"",
+    "prettier:check": "prettier --check \"**/*.js\""
+  },
+  "dependencies": {
+    "@slack/web-api": "latest",
+    "botbuilder-adapter-slack": "^1.0.5",
+    "botbuilder-storage-mongodb": "^0.9.5",
+    "botkit-plugin-cms": "^1.0.2",
+    "dotenv": "^7.0.0",
+    "nyc": "^14.1.1"
+  },
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "axios-mock-adapter": "^1.17.0",
+    "assert": "^1.4.1",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "dotenv": "^7.0.0",
+    "mongoose": "^5.7.5",
+    "@slack/web-api": "latest",
+    "botkit": "^4.5.0",
+    "botkit-mock": "^4.0.0",
+    "sinon": "^7.5.0",
+    "sinon-mongoose": "^2.3.0",
+    "prettier": "^1.19.1"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "branches": 40,
+    "lines": 40,
+    "functions": 40,
+    "statements": 40
+  }
+}

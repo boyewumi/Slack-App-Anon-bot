@@ -1,0 +1,29 @@
+image: node:latest
+
+before_script:
+  - cd src
+  - npm ci
+
+stages:
+  - build
+  - test
+  - codecov
+  - prettierCheck
+
+cache:
+  paths:
+    - src/node_modules/
+
+running_prettier:
+  stage: prettierCheck
+  script: npm run prettier:check
+
+running_test:
+  stage: test
+  script: npm run test
+
+
+running_codecov:
+  stage: codecov
+  script: npm run codecov
+
