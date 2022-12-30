@@ -23,7 +23,7 @@
     "axios-mock-adapter": "^1.17.0",
     "assert": "^1.4.1",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "dotenv": "^7.0.0",
     "mongoose": "^5.7.5",
     "@slack/web-api": "latest",
